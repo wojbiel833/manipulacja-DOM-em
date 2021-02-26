@@ -38,17 +38,23 @@ function initActions() {
   console.log(favouriteBooks);
 
   thisBook.covers = document.querySelectorAll(select.bookInfo.cover);
-
   console.log(thisBook.covers);
+
   for (const cover of thisBook.covers) {
     console.log(cover);
-    const coverID = cover.getAttribute('data-id');
-    console.log(coverID);
     cover.addEventListener('dblclick', function () {
       event.preventDefault();
-      cover.classList.add('favorite');
-      if (!favouriteBooks.includes(cover)) {
-        favouriteBooks.push(cover);
+
+      const coverID = cover.getAttribute('data-id');
+      console.log(coverID);
+      if (!favouriteBooks.includes(coverID)) {
+        cover.classList.add('favorite');
+        favouriteBooks.push(coverID);
+        console.log(favouriteBooks);
+      } else {
+        cover.classList.remove('favorite');
+        favouriteBooks.splice(thisBook.coverID, 1);
+        console.log(favouriteBooks);
       }
     });
   }
@@ -57,3 +63,5 @@ function initActions() {
 
 renderHTML();
 initActions();
+
+// ta druga funkcja cos szwankuje z preventDefault i nie jestem pewin czy dodanie do favouriteBooks jest tak jak ma byc
