@@ -1,6 +1,6 @@
 const dataSource = {}; // eslint-disable-line no-unused-vars
 
-dataSource.books = [
+dataSource.books = [ 
   {
     id: 1,
     name: 'Lady in red',

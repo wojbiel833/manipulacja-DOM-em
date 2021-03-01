@@ -11,6 +11,7 @@ const select = {
   },
   filters: {
     section: '.filters',
+    filter: '.filters label input',
   },
 };
 
@@ -25,11 +26,13 @@ const filters = [];
 const filterSec = document.querySelector(select.filters.section);
 
 books.covers = document.querySelectorAll(select.bookInfo.cover);
-console.log(books.covers);
+// console.log(books.covers);
 books.list = document.querySelector(select.bookInfo.list);
 console.log(books.list);
 books.rating = document.querySelectorAll(select.bookInfo.rating);
-console.log(books.rating);
+// console.log(books.rating);
+books.filters = document.querySelectorAll(select.filters.filter);
+// console.log(books.filters);
 
 function renderHTML() {
   const thisBook = this;
@@ -37,10 +40,10 @@ function renderHTML() {
   for (const item of dataSource.books) {
     console.log(item);
     const ratingBgc = determineRatingBgc(item.rating);
-    console.log(ratingBgc);
+    // console.log(ratingBgc);
     item.ratingBgc = ratingBgc;
     const ratingWidth = item.rating * 10;
-    console.log(ratingWidth);
+    // console.log(ratingWidth);
     item.ratingWidth = ratingWidth;
     const generateHTML = templates.bookTemp(item);
     // console.log(generateHTML);
@@ -119,9 +122,9 @@ function booksFilter() {
   for (const filteredBooks of dataSource.books) {
     console.log(filteredBooks);
     let shouldBeHidden = false;
-    if (filteredBooks.details.hasOwnProperty('adults')) {
-      for (const filter of filters) {
-        if (!filteredBooks.details[filter]) {
+    for (const filter of books.filters) {
+      if (filteredBooks.details.hasOwnProperty(filter.value)) {
+        if (!filteredBooks.details[filter.value]) {
           shouldBeHidden = true;
           break;
         }
