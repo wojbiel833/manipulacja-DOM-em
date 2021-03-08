@@ -62,6 +62,10 @@ function initActions() {
   const favouriteBooks = [];
   // console.log(favouriteBooks);
 
+  books.list.addEventListener('click', function (event) {
+    event.preventDefault();
+  });
+
   books.list.addEventListener('dblclick', function (event) {
     event.preventDefault();
 
